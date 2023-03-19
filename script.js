@@ -1,4 +1,9 @@
-// Math basic functions
+// Global variables
+const numberData = document.querySelectorAll('[data-numbers]');
+const btnNumber = document.querySelectorAll('.btnNums');
+const currResult = document.querySelector('.curr-Result');
+
+// Object with group of operate functions
 const mathFunction = {
     add,
     subtract,
@@ -6,6 +11,7 @@ const mathFunction = {
     divide,
 }
 
+// Math basic functions
 // Add function
 function add(a, b){
     return a + b;
@@ -42,4 +48,16 @@ function operate(operator, a, b){
     }
 }
 
-console.log(operate('/', 4, 5));
+// UI - Display
+numberData.forEach(btnNumber => {
+    btnNumber.addEventListener('click', () => {
+        const number = btnNumber.getAttribute('data-numbers');
+        if (currResult.textContent === "0") {
+            currResult.textContent = number;
+        } else {
+            currResult.textContent += number;
+        }
+        let currNum = currResult.textContent;
+        console.log(currNum);
+    });
+});
