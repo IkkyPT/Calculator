@@ -1,0 +1,132 @@
+:root {
+    --main-bg-color: #D4D4D2;
+    --delete-button-color: rgb(172, 110, 110);
+    --delete-button-color-hover: rgb(153, 97, 97);
+    --clear-button-color: rgb(121, 128, 161);
+    --clear-button-color-hover: rgb(105, 112, 141);
+    --fourth-bg-color: #505050;
+    --hover-button-color: #b8b8b4;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(186, 192, 197);
+}
+
+html * {
+    font-family: 'Almendra', serif;
+    font-family: 'IBM Plex Mono', monospace;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+    min-height: 500px;
+}
+
+.calc-Body {
+    background-color: var(--fourth-bg-color);
+    width: 300px;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+.calc-Interactive {
+    box-sizing: border-box;  
+} 
+
+.disp-Result {
+    background-color: var(--main-bg-color);
+    padding: 20px 10px;
+    margin-bottom: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    height: 50px;
+    font-size: 25px;
+}
+
+.disp-Result > div {
+    width: 100%;
+}
+
+.curr-Result {
+    font-size: 30px;
+    text-align: right;
+}
+
+.prev-Result {
+    font-size: 20px;
+    text-align: right;
+    min-height: 25px;
+}
+
+.calc-Function {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 300px;
+}  
+
+.calc-Function > button {
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+#delete {
+    background-color: var(--delete-button-color);
+    width: 49%;
+}
+
+#delete:hover {
+    background-color: var(--delete-button-color-hover);
+}
+
+#clear {
+    background-color: var(--clear-button-color);
+    width: 49%;
+}
+
+#clear:hover {
+    background-color: var(--clear-button-color-hover);
+}
+
+.num-Operator {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 300px;
+    justify-content: space-between;
+}
+
+.num-Operator > button {
+    padding: 25px;
+    background-color: var(--main-bg-color);
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    flex-basis: 24%;
+    font-size: 18px;
+}
+
+.num-Operator > button:hover {
+    background-color: var(--hover-button-color);
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 12px;
+    font-size: 25px;
+}
