@@ -26,7 +26,20 @@ function divide(a, b){
     return a / b;
 }
 
-console.log(mathFunction.add(2, 3));
-console.log(mathFunction.subtract(2, 3));
-console.log(mathFunction.multiply(2, 3));
-console.log(mathFunction.divide(8, 2));
+// Operate function
+function operate(operator, a, b){
+    switch (operator) {
+        case '+':
+            return mathFunction.add(a, b)
+        case '-':
+            return mathFunction.subtract(a, b);
+        case '*':
+            return mathFunction.multiply(a, b);
+        case '/':
+            return mathFunction.divide(a, b);
+        default:
+            return null;
+    }
+}
+
+console.log(operate('/', 4, 5));
