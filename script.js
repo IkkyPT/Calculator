@@ -10,7 +10,8 @@ let a ;
 let b ;
 let currValue = 0;
 let operatorType = '';
-let multiOperaOn = false;
+let modifyResult = '';
+let multipleOperators = false;
 let result;
 
 // Object with group of operate functions
@@ -60,10 +61,7 @@ function operate(operator, a, b){
 
 // Get result function
 function getResult(){
-    b = currValue;
     result = operate(operator, a, b);
-    currResult.textContent = result;
-    prevResult.textContent = '';
     a = result;
     b = 0;
     currValue = result;
@@ -74,11 +72,27 @@ function clearBoard(){
     currResult.textContent = "0";
     prevResult.textContent = "";
     currValue = 0;
-    a = 0;
+    a = undefined;
     result = 0;
-    multiOperaOn = false;
+    multipleOperators = false;
 };
 
+// Delete function
+function deletePrev() {
+    modifyResult = currResult.textContent;
+    modifyResult = modifyResult.slice(0, modifyResult.length - 1);
+    currResult.textContent = modifyResult;
+    currValue = parseFloat(currResult.textContent);
+}
+
+// Round number function
+function roundNum(){
+    modifyResult = currResult.textContent;
+    if (modifyResult.length > 12) {
+        modifyResult = modifyResult.slice(0, - (modifyResult.length - 12));
+        currResult.textContent = modifyResult;
+    }
+}
 
 // UI - Display
   // Add numbers to display once number buttons are clicked
@@ -91,36 +105,38 @@ numberData.forEach(btnNumber => {
             currResult.textContent += number;
         }
         currValue = parseFloat(currResult.textContent);
+        if (a) {
+            b = currValue;
+        }
     });
 });
 
 numberOperator.forEach(btnOperator => {
     btnOperator.addEventListener('click', () => {
         const operatorType = btnOperator.getAttribute('data-operator');
-        if (multiOperaOn == true){
-            b = currValue;
-            result = operate(operator, a, b);
-            a = result;
-            b = 0;
-            currValue = result;
+        if (multipleOperators == true){
+            getResult();
         }
         else {
             a = currValue;
         }
-        multiOperaOn = true;
+        multipleOperators = true;
         if (currResult.textContent !== ""){
             currResult.textContent += operatorType;
             prevResult.textContent += currResult.textContent;
             currResult.textContent = "";
             operator = operatorType;
         }
-        else {
-            return null;
-        }
     });
 });
 
 equalsBtn.addEventListener('click', () => {
+    if (isNaN(a) || isNaN(b)) {
+        return; // Exit early if expression is incomplete
+    }
     getResult();
-    multiOperaOn = false;
+    currResult.textContent = result;
+    prevResult.textContent = '';
+    roundNum();
+    multipleOperators = false;
 });
