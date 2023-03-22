@@ -22,6 +22,7 @@ html * {
 
 .main {
     display: flex;
+    flex-shrink: 1;
     justify-content: center;
     align-items: center;
     height: 90vh;
@@ -48,7 +49,6 @@ html * {
     border: 2px solid black;
     border-radius: 5px;
     height: 50px;
-    font-size: 25px;
     box-shadow: 3px 3px  rgb(138, 135, 135);
 }
 
@@ -134,3 +134,46 @@ html * {
     gap: 12px;
     font-size: 25px;
 }
+
+@media screen and (max-width: 433px) {
+    .footer{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 348px){
+    .calc-Body {
+        width: 200px;
+        height: 350px;
+    }
+
+    .disp-Result{
+        padding: 10px 5px;
+    }
+
+    .curr-Result{
+        font-size: 20px;
+    }
+
+    .prev-Result{
+        font-size: 15px;
+    }
+
+    .calc-Function {
+        width: 200px;
+    }
+
+    .calc-Function > button {
+        padding: 10px;
+        font-size: 10px;
+    }
+
+    .num-Operator > button {
+        padding: 10px;
+    }
+
+    .footer{
+        font-size: 15px;
+    }
+};
+    

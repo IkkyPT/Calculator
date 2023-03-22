@@ -147,7 +147,7 @@ numberOperator.forEach(btnOperator => {
 equalsBtn.addEventListener('click', () => {
     btnDotOn = false;
     if (isNaN(a) || isNaN(b)) {
-        return; // Exit early if expression is incomplete
+        return;
     }
     if (a == 0 || b == 0 && operator === '÷')
     {
