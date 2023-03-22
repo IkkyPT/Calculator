@@ -3,6 +3,7 @@ const numberData = document.querySelectorAll('[data-numbers]');
 const btnNumber = document.querySelectorAll('.btnNums');
 const currResult = document.querySelector('.curr-Result');
 const numberOperator = document.querySelectorAll('[data-operator]');
+const btnDot = document.querySelector('.btnDot');
 const btnOperator = document.querySelectorAll('.btnOper');
 const prevResult = document.querySelector('.prev-Result');
 const equalsBtn = document.querySelector('.btnEqual');
@@ -11,6 +12,7 @@ let b ;
 let currValue = 0;
 let operatorType = '';
 let modifyResult = '';
+let btnDotOn = false;
 let multipleOperators = false;
 let result;
 
@@ -99,7 +101,7 @@ function roundNum(){
 numberData.forEach(btnNumber => {
     btnNumber.addEventListener('click', () => {
         const number = btnNumber.getAttribute('data-numbers');
-        if (currResult.textContent === "0") {
+        if (currResult.textContent === "0" || currResult.textContent === "ERROR") {
             currResult.textContent = number;
         } else {
             currResult.textContent += number;
@@ -111,9 +113,21 @@ numberData.forEach(btnNumber => {
     });
 });
 
+btnDot.addEventListener('click', () => {
+    if (btnDotOn == true){
+        return;
+    }
+    else {
+        currResult.textContent += '.';
+        currValue = parseFloat(currResult.textContent);
+        btnDotOn = true;
+    }
+});
+
 numberOperator.forEach(btnOperator => {
     btnOperator.addEventListener('click', () => {
         const operatorType = btnOperator.getAttribute('data-operator');
+        btnDotOn = false;
         if (multipleOperators == true){
             getResult();
         }
@@ -131,12 +145,21 @@ numberOperator.forEach(btnOperator => {
 });
 
 equalsBtn.addEventListener('click', () => {
+    btnDotOn = false;
     if (isNaN(a) || isNaN(b)) {
         return; // Exit early if expression is incomplete
     }
-    getResult();
-    currResult.textContent = result;
-    prevResult.textContent = '';
-    roundNum();
-    multipleOperators = false;
+    if (a == 0 || b == 0 && operator === '÷')
+    {
+        currResult.textContent = "ERROR";
+        prevResult.textContent = '';
+        a, b, operator = undefined;
+    }
+    else {
+        getResult();
+        currResult.textContent = result;
+        prevResult.textContent = '';
+        roundNum();
+        multipleOperators = false;
+    }
 });
